@@ -1,0 +1,16 @@
+<div id="spree-footer" class="footer navbar-fixed-bottom">
+	<div class="container">
+		<footer "  role="navigation">
+		  <div id="footer-left" class="col-sm-6" data-hook>
+		    <p><%= link_to Spree.t(:home), spree.root_path %></li></p>
+		  </div>
+      <% if spree_current_user %>
+        <div id="footer-right" class=" nav navbar-nav navbar-right" data-hook>
+          <%= link_to Spree.t(:my_account), spree.account_path %>
+          <%= link_to Spree.t(:logout), spree.logout_path %>
+        </div>        
+      <% end %>
+		</footer>
+	</div>
+</div>
+
