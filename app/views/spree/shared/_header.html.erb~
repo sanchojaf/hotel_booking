@@ -1,9 +1,10 @@
-<div id="spree-header">
-
+<div id="spree-header" >
 	<header id="header" data-hook>
 		<div class="container">
-	  		<figure id="logo" class="text-center col-md-4" data-hook><%= logo %></figure>
-	  		<%=  render :partial => 'spree/shared/nav_bar' %>
+	  		<figure id="logo" class="text-center col-md-4 col-md-offset-3 col-sm-2 col-sm-offset-4" data-hook><%= logo %></figure>
+	  		<% if params[:controller] == "spree/products" %>
+	  		  <%= render :partial => 'spree/shared/nav_bar' %>
+        <% end %>
 		</div>
 	</header>
 	<div class="container">

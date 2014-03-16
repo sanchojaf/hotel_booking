@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315140886) do
+ActiveRecord::Schema.define(version: 20140316030705) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "firstname"
@@ -172,6 +172,19 @@ ActiveRecord::Schema.define(version: 20140315140886) do
     t.integer  "source_id"
     t.string   "source_type"
     t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_measurements", force: true do |t|
+  end
+
+  create_table "spree_measures", force: true do |t|
+    t.integer  "measurement_id"
+    t.string   "name"
+    t.integer  "min"
+    t.integer  "max"
+    t.integer  "pos"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -683,8 +696,8 @@ ActiveRecord::Schema.define(version: 20140315140886) do
     t.string   "persistence_token"
     t.string   "reset_password_token"
     t.string   "perishable_token"
-    t.integer  "sign_in_count",                      default: 0, null: false
-    t.integer  "failed_attempts",                    default: 0, null: false
+    t.integer  "sign_in_count",                      default: 0,    null: false
+    t.integer  "failed_attempts",                    default: 0,    null: false
     t.datetime "last_request_at"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -701,6 +714,14 @@ ActiveRecord::Schema.define(version: 20140315140886) do
     t.datetime "updated_at"
     t.string   "spree_api_key",          limit: 48
     t.datetime "remember_created_at"
+    t.string   "title",                              default: "Mr"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   add_index "spree_users", ["email"], name: "email_idx_unique", unique: true
