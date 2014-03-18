@@ -7605,30 +7605,30 @@ button.close {
     display: none !important;
   }
 }
-/* line 8, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 8, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-header {
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 12, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 12, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-header #header {
   padding: 20px 0;
 }
-/* line 16, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 16, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-header #logo {
   margin-bottom: 10px;
 }
-/* line 18, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 18, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-header #logo img {
   width: 153px;
 }
-/* line 28, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 28, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-header .navbar {
   border: 0;
   margin-bottom: 0;
 }
 
-/* line 34, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 34, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 #spree-footer {
   background: #333333;
   padding-top: 12px;
@@ -7636,17 +7636,17 @@ button.close {
   color: #fff;
 }
 
-/* line 47, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 47, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 .product-body {
   height: 170px;
 }
 
-/* line 50, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 50, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 .progress-steps {
   margin-top: 20px;
 }
 
-/* line 53, /media/sancho/Data/development/table_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
+/* line 53, /home/sancho/dev/tablet_peach/app/assets/stylesheets/spree/frontend/spree_bootstrap_frontend.css.scss */
 h1 {
   margin-bottom: 30px;
 }
