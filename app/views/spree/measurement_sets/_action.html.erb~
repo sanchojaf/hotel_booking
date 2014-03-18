@@ -1,0 +1,14 @@
+<h2>Regiter a new Customer</h2>
+<div class="col-sm-8 col-sm-offset-2 well text-right form-buttons" data-hook="buttons">     
+
+  <fieldset class="no-border-bottom">
+    <legend align="center"> Address ></legend>
+    <%= form.fields_for :ship_address, (@measurement.customer.ship_address || Spree::Address.default(@measurement.customer, "ship")) do |sa_form| %>
+      <% sa_form.object ||= Spree::Address.new(country: Spree::Country.new) %>
+      <%= render :partial => 'address', :locals => { :f => sa_form, :type => "shipping" } %>
+    <% end %>
+  </fieldset>
+
+</div>
+ 
+<%= render 'indicator' %>

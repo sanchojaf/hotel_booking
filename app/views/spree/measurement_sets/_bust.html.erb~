@@ -1,0 +1,11 @@
+<div >
+  <h1><%= @measurement_set.measure_items[0].measure.name %></h1>
+  <div class="well text-right form-buttons" data-hook="buttons">
+     <%= form.fields_for :measure_items[0] do |measure_item_field| %> 
+        <h3> Value: <%= measure_item_field.text_field :value %>  </h3>       
+    <% end %>
+  </div>
+</div>
+
+<%= render 'indicator'%>
+

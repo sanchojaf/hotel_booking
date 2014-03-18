@@ -1,0 +1,16 @@
+<div data-hook>
+  <%=  render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set } %>
+  
+  <div class="row" data-hook="checkout_content">
+    <div >
+      <%= form_for @measurement_set, :url => update_measurement_sets_path(@measurement_set.state, id: params[:id]), :html => { :id => "measurement_sets_form_#{@measurement_set.state}" } do |form| %>
+          <%= render @measurement_set.state, :form => form %>
+      <% end %>
+    </div>
+    <% if @measurement_set.state != 'confirm' %>
+      <div ">
+        <%= render :partial => 'summary', :locals => { :measurement_set => @measurement_set } %>
+      </div>
+    <% end %>
+  </div>
+</div>

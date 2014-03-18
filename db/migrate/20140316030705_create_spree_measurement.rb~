@@ -1,0 +1,16 @@
+class CreateSpreeMeasurement < ActiveRecord::Migration
+  def change
+    create_table :spree_measurements do |t|
+      t.string :state, :default => "active"
+      t.integer :seller_id
+      t.integer :custumer_id
+      t.datetime   :confirmed_at
+      t.datetime   :completed_at
+      t.datetime   :action_at
+      t.timestamps
+    end
+    add_index :spree_measurements, :completed_at
+    add_index :spree_measurements, :confirmed_at
+    add_index :spree_measurements, :action_at
+  end
+end

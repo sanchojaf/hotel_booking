@@ -38,6 +38,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'spree', github: 'spree/spree', branch: '2-2-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-2-stable'
+gem 'spree_peach_sample', github: 'sanchojaf/spree_peach_sample'
 
 # Use unicorn as the app server
 # gem 'unicorn'

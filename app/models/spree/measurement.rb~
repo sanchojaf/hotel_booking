@@ -1,5 +1,124 @@
 module Spree
   class Measurement < ActiveRecord::Base
-    belongs_to :user, class_name: "Spree::User"
+    belongs_to :seller, :class_name => "User"
+    belongs_to :customer, :class_name => "User"
+
+    has_many :measure_items, dependent: :destroy
+
+    accepts_nested_attributes_for :measure_items, :allow_destroy => true
+
+    #==========================================
+    # State Machine
+
+    state_machine :initial => :active do
+      after_transition :on => :register, :do => :perform_register
+      after_transition :on => :address, :do => :perform_address
+      #after_transition :on => :bust, :do => :perform_bust
+      #after_transition :on => :band, :do => :perform_band 
+      after_transition :on => :confirm, :do => :perform_confirmation
+      after_transition :on => :complete, :do => :perform_complete
+
+      event :register do 
+        transition [ :active, :register ] => :register
+      end
+      event :address do 
+        transition [ :active, :register, :address ] => :address
+      end
+      event :bust do 
+        transition [ :active, :register, :address ] => :bust
+      end
+      event :band do 
+        transition [ :active, :register, :address, :bust ] => :band
+      end
+      event :confirm do
+        transition [ :active, :register, :address, :bust, :band ] => :confirm
+      end
+      event :complete do
+        transition [ :active, :register, :address, :bust, :band, :confirm ] => :completed
+      end
+
+    end
+
+    #==========================================
+    # Callbacks
+
+    after_initialize do |measurement|
+     band = Measure.find_or_create_by_name( name: 'Band', min: 2 , max: 40) 
+     bust = Measure.find_or_create_by_name( name: 'Bust', min: 3 , max: 50) 
+     item_band = MeasureItem.create(measurement: measurement, measure: band, value: 0)
+     item_bust = MeasureItem.create(measurement: measurement, measure: bust, value: 0)  
+     measurement.customer = Spree::User.new()   
+    end
+
+    #==========================================
+    # Methods
+
+    def next
+      case state
+      when 'active' then return self.register!
+      when 'register' then return self.address!
+      when 'address' then return self.bust!
+      when 'bust' then return self.band!
+      when 'band' then return self.confirm!
+      when 'confirm' then return self.complete! 
+      end   
+      return false
+    end
+
+    def update_from_params(params)     
+      attributes = {}
+      attributes = params[:measurement] if params[:measurement]
+      
+      if attributes[:m].present?
+        case params[:state]            
+        when 'bust' then self.measure_items[0].update_attributes(:value => attributes[:m][:value])        
+        when 'band' then self.measure_items[1].update_attributes(:value => attributes[:m][:value])        
+        end
+      end
+
+      if attributes[:user].present?
+        if self.customer
+          self.customer.update_attributes measurement_params(params) 
+        else
+          user = Spree.user_class.new measurement_params(params)
+          return false unless user.save
+          self.customer = user                   
+        end 
+      end
+      
+      return true
+    end
+
+  private
+
+
+    def perform_register 
+      self.update_attribute(:action_at, Time.now)
+    end
+
+    def perform_address 
+      self.update_attribute(:action_at, Time.now)
+    end
+
+    def perform_bust 
+      self.update_attribute(:action_at, Time.now)
+    end
+
+    def perform_band 
+      self.update_attribute(:action_at, Time.now)
+    end
+
+    def perform_confirmation 
+      self.update_attribute(:confirmed_at, Time.now)
+    end
+
+    def perform_complete 
+      self.update_attribute(:completed_at, Time.now)
+    end
+
+    def measurement_params(params)
+      params.require(:measurement).require(:user).permit( :email, :password, :password_confirmation)
+    end
+
   end
 end

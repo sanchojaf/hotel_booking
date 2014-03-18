@@ -1,0 +1,87 @@
+module Spree
+  class MeasurementsController < Spree::StoreController
+    before_action :set_measurement, only: [ :confirm, :action, :show, :edit, :update, :destroy]
+
+   def confirm
+      if @measurement.confirm!
+        flash[:notice] = Spree.t('measurements.confirm.success', number: @measurement.id)
+      end
+      redirect_to spree.edit_measurement_path(@measurement)
+    end
+
+    def action
+      if @measurement.deliver!
+        flash[:notice] = Spree.t('measurements.action.success', number: @measurement.id)
+      end
+      redirect_to spree.edit_measurement_path(@measurement)
+    end
+
+    def update
+      if @measurement.update_from_params(params)
+        #persist_user_address      
+
+        puts "params? in update action ////////// #{params }"
+        unless @measurement.next
+          flash[:error] = @measurement.errors.full_messages.join("\n")
+          redirect_to measurement_edit_path(@measurement.state) and return
+        end
+        if @measurement.completed?
+          session[:measurement_id] = nil
+          flash.notice = Spree.t(:measurement_processed_successfully)
+          redirect_to completion_route
+        else
+          redirect_to spree.edit_measurement_path(@measurement)
+        end
+
+      else
+        render :edit
+      end
+    end
+
+
+    def edit
+      puts "params : #{params.inspect}"
+    end
+
+    def show
+    end
+ 
+    def new
+      @measurement = Measurement.new
+
+    end
+
+
+    def create
+      @measurement = Measurement.new() #measurement_params
+      band = Measure.find_or_create_by_name( name: 'Band', min: 2 , max: 40) 
+      bust = Measure.find_or_create_by_name( name: 'Bust', min: 3 , max: 50) 
+      item_band = MeasureItem.create(measurement: @measurement, measure: band, value: 0)
+      item_bust = MeasureItem.create(measurement: @measurement, measure: bust, value: 0)  
+      @measurement.customer = Spree::User.new()   
+      if @measurement.save
+        redirect_to spree.edit_measurement_path(@measurement)       
+      else
+        render action: 'new'      
+      end
+    end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_measurement
+      puts "params /////////////////#{params.inspect}"
+      @measurement = Measurement.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+#    def measurement_params
+#      params.require(:measurement)
+#    end
+
+    def completion_route
+      spree.measurement_path(@measurement)
+    end
+
+  end
+
+end

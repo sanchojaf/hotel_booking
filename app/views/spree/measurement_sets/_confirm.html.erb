@@ -1,0 +1,15 @@
+<div class="well text-right form-buttons" data-hook="buttons">
+ <div  class="col-sm-8 col-sm-offset-2 panel panel-default">
+
+   <h1> Customer: <%= @measurement_set.customer.email %> </h1>
+   <h1> Seller: <%= spree_current_user.email %> </h1>
+   <h1> Address <%= @measurement_set.customer.ship_address.inspect %> </h1>
+   
+   <% @measurement_set.measure_items.each do |measure_item|  %>
+    <h1> <%= measure_item.measure.name %>:  <%= measure_item.value %> </h1>
+   <% end %>
+
+  </div>
+</div>
+
+<%= render 'indicator'%>

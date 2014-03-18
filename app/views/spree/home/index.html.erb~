@@ -14,7 +14,7 @@
     </li> 
     <li>
       <%= image_tag "store/mini-icon-4.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' ><%= link_to 'Measure' %></h2>
+      <h2 class='col-md-offset-1 col-sm-offset-2' ><%= link_to 'Measure', new_measurement_set_path %></h2>
     </li> 
     <li>  
       <%= image_tag "store/mini-icon-5.png", :class => "img-circle pull-left" %>
