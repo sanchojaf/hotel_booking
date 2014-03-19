@@ -11,7 +11,7 @@ module Spree
       path: ':rails_root/public/spree/users/:id/:style/:basename.:extension',
       default_url: '/assets/default_user.png'
 
-    include Spree::Core::S3Support
-    supports_s3 :icon
+    #include Spree::Core::S3Support
+    #supports_s3 :icon
   end
 end

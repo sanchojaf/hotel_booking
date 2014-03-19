@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20140316141134) do
   add_index "spree_measurement_sets", ["confirmed_at"], name: "index_spree_measurement_sets_on_confirmed_at"
 
   create_table "spree_measures", force: true do |t|
+    t.integer  "measure_item_id"
     t.string   "name"
     t.integer  "min"
     t.integer  "max"

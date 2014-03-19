@@ -2,7 +2,6 @@ module Spree
   class MeasurementSet < ActiveRecord::Base
     belongs_to :seller, :class_name => "User"
     belongs_to :customer, :class_name => "User"
-
     has_many :measure_items, dependent: :destroy
 
     accepts_nested_attributes_for :measure_items, :allow_destroy => true

@@ -97,7 +97,7 @@ module Spree
           puts "/////////  address #{address.inspect}"
           return false unless address.save
           self.customer.ship_address = address      
-          puts "/////////  address self.customer.ship_address #{self.customer.ship_address}"            
+          self.customer.save            
         end 
       end
       

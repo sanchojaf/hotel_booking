@@ -2,9 +2,9 @@
 
 <p>
   <strong>ID:</strong>
-  <%= @measurement.id %>
+  <%= @measurement_set.id %>
 </p>
 
 
-<%= link_to 'Edit', edit_measument_path(@measurement) %> |
+<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
 

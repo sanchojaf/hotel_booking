@@ -44,11 +44,11 @@ module Spree
     end
 
     def show
+      redirect_to root_url
     end
  
     def new 
       @measurement_set = MeasurementSet.new
-
     end
 
 
