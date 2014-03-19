@@ -2,7 +2,7 @@ module Spree
   User.class_eval do
     has_many :measurement_sets
     has_many :customers, :through => :measurement_sets #if role is seller
-    has_one :seller # if role is customer
+    has_many :sellers, :through => :measurement_sets # if role is customer
 
     has_attached_file :icon,
       styles: { mini:'<32x32>', normal: '<250x250>' },
@@ -11,7 +11,7 @@ module Spree
       path: ':rails_root/public/spree/users/:id/:style/:basename.:extension',
       default_url: '/assets/default_user.png'
 
-   #include Spree::Core::S3Support
-    #supports_s3 :icon
+    include Spree::Core::S3Support
+    supports_s3 :icon
   end
 end
