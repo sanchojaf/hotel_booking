@@ -3,8 +3,19 @@
   
   <div class="row" data-hook="checkout_content">
     <div >
-      <%= form_for @measurement_set, :url => update_measurements_path(@measurement_set.state, id: params[:id]), :html => { :id => "measurement_sets_form_#{@measurement_set.state}" } do |form| %>
+      <%= form_for @measurement_set, :url => update_measurement_sets_path(@measurement_set.state, id: params[:id]), :html => { :id => "measurement_sets_form_#{@measurement_set.state}" } do |form| %>
+
+          <%=# render @measurement_set.state, :form => form 
+          %>
+
+        <% if ['active','address','confirm','complete'].include? @measurement_set.state   %>   
           <%= render @measurement_set.state, :form => form %>
+        <% else %>
+          <%= render 'measurement', :form => form %>
+        <% end %>
+
+
+
       <% end %>
     </div>
     <% if @measurement_set.state != 'confirm' %>
