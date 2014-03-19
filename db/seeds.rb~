@@ -18,7 +18,7 @@ Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
 #puts 'New user created: ' << user2.first_name
 
-#role = Spree::Role.find_or_create_by_name 'host'
+role = Spree::Role.find_or_create_by_name 'seller'
 
 #user1.spree_roles << role
 #user1.save
