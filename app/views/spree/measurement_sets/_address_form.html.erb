@@ -39,8 +39,6 @@
     <p class="field" id=<%="#{address_id}state" %>>
       <% have_states = !address.country.states.empty?
       %>
-      <%= f.label :state, Spree.t(:state) %><span class='required' id=<%="#{address_id}state-required"%>>*</span><br/>
-
       <% state_elements = [
          f.collection_select(:state_id, address.country.states,
                             :id, :name,
