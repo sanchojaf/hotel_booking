@@ -2,7 +2,6 @@ module Spree
   class MeasurementSet < ActiveRecord::Base
     belongs_to :seller, :class_name => "User"
     belongs_to :customer, :class_name => "User"
-
     has_many :measure_items, dependent: :destroy
 
     accepts_nested_attributes_for :measure_items, :allow_destroy => true
@@ -78,6 +77,12 @@ module Spree
       end
 
       if attributes[:user].present?
+        if attributes[:user][:password].blank?          
+          gp = generate_password
+          attributes[:user][:password] = gp
+          attributes[:user][:password_confirmation] = gp
+        end
+     
         if self.customer
           return false unless self.customer.update_attributes user_set_params(params) 
         else
@@ -88,13 +93,11 @@ module Spree
       end
 
       if attributes[:ship_address].present?
-        puts "//////////////////// en update_from_params  /////////params[:state]    #{ params[:state] }"
+
         if self.customer.ship_address
           return false unless self.customer.ship_address.update_attributes address_set_params(params) 
         else
-          puts "/////////  ENTRO EN EL ELSE #{params}"
           address = Spree::Address.new address_set_params(params)
-          puts "/////////  address #{address.inspect}"
           return false unless address.save
           self.customer.ship_address = address      
           self.customer.save            
@@ -132,6 +135,10 @@ module Spree
 
     def address_set_params(params)
       params.require(:measurement_set).require(:ship_address).permit( :firstname, :lastname, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone )
+    end
+
+    def generate_password
+      "123456"
     end
 
   end
