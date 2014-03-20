@@ -18,6 +18,4 @@
 
 <% unless @measurement_set.state == 'confirm' %> 
   <%= render 'indicator' %>
-<% else %>
-  <%= submit_tag "Submit", :class => ' btn  btn-block hide' %>
 <% end %>

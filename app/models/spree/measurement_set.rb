@@ -82,12 +82,20 @@ module Spree
       attributes = {}
       attributes = params[:measurement_set] if params[:measurement_set].present?
       
+      puts "******************** params #{params} ******************"
+
       if attributes[:measure_item].present?              
         measure = Spree::Measure.find_by_name(params[:state].capitalize)
         measure_items.each do |measure_item|
-          if measure_item.measure.id == measure.id
-            return false unless measure_item.update_attributes(:value => attributes[:measure_item][:value])   
-          end
+          return false unless measure_item.update_attributes(:value => attributes[:measure_item][:value])   
+        end
+      end
+
+
+      if attributes[:measure_items_attributes].present?   
+         attributes[:measure_items_attributes].each do |key, hash_value |           
+          measure_item = measure_items[key.to_i]        
+          return false unless measure_item.update_attributes(:value =>  hash_value[:value])                      
         end
       end
 

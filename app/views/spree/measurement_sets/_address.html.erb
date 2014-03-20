@@ -1,7 +1,6 @@
-
 <div class="col-md-12 col-sm-12 ">   
 
-<div class="panel panel-default">
+  <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Address</h3>
       </div>
@@ -16,6 +15,4 @@
 </div>
 <% unless @measurement_set.state == 'confirm' %> 
   <%= render 'indicator' %>
-<% else %>
-  <%= submit_tag "Submit", :class => ' btn  btn-block hide' %>
 <% end %>

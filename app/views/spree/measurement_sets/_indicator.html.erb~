@@ -1,4 +1,4 @@
-<div class="container  navbar-fixed-bottom">
+<div class="container ">
   <div class=" col-sm-4">
     <h2>
       <% unless @measurement_set.state == 'active' %>
