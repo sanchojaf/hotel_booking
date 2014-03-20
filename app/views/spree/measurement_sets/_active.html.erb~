@@ -7,6 +7,7 @@
     <div id="new-customer" class="panel-body" data-hook="login">
        <%= form.fields_for :user do |user| %> 
          <div data-hook="signup_inside_form">
+           <% user.object ||= @measurement_set.customer || Spree::User.new %>
           <%= render :partial => 'user_form', :locals => { :f => user } %>
          </div>     
       <% end %> 

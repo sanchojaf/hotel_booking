@@ -1,23 +1,24 @@
-<div class="col-sm-6">   
+<div class="col-sm-6 col-md-6">   
   <%=  form_for @measurement_set do |form| %>     
     <%= render 'active', :form => form %>             
     <%= render 'address', :form => form %>        
   <% end %>    
 </div>
 
-<div class="col-sm-6"   >    
+<div class="col-sm-6 col-md-6"   >    
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><%= Spree.t(:measuremet_set) %></h3>
     </div>
+    <div class="panel-body">
     <% @measurement_set.measure_items.each do |measure_item|  %>
       <%=  form_for @measurement_set do |form| %>        
           <%= form.fields_for :measure_item do |mi_form| %>
-            <div class="col-sm-12  "> 
-              <div class="col-sm-4 col-sm-offset-2  "> 
+            <div class="col-sm-12 col-sm-offset-2 "> 
+              <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2"> 
                <h4 ><%= measure_item.measure.name %></h4>
               </div>
-              <div class="col-sm-4  ">                
+              <div class="col-sm-4 col-md-4 ">                
                 <%= mi_form.text_field :value, :class => 'form-control', :placeholder => measure_item.value %>
               </div>                  
               <%= submit_tag "submit", :class => 'hide btn  btn-block ' %></h2>                    
@@ -25,16 +26,17 @@
           <% end %> 
       <% end %>        
     <% end %>     
+    </div> 
   </div> 
 </div>
 
-<div class="col-sm-6 " >
+<div class="col-sm-6 col-md-6 " >
   <%=  form_for @measurement_set do |form| %>
-    <div class="col-sm-6 " >
+    <div class="col-sm-6 col-md-6" >
     <%= link_to "< Previus ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
                                   :class => 'col-sm-3 btn btn-lg btn-success btn-block' %>
     </div>
-    <div class="col-sm-6 " >
+    <div class="col-sm-6 col-md-6" >
     <%= submit_tag "Confirm !", :class => 'col-sm-3 btn btn-lg btn-success btn-block ' %>
   <%  end %>  
     </div>

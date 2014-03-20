@@ -10,6 +10,5 @@
     <%= f.hidden_field :password_confirmation %>
   </div> 
 
-
 </fieldset>
 <div data-hook="signup_below_password_fields"></div>

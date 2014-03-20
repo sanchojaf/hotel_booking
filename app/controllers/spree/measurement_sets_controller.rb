@@ -43,7 +43,7 @@ module Spree
       band = Measure.find_or_create_by_name( name: 'Band', min: 2 , max: 40) 
       item_bust = MeasureItem.create(measurement_set: @measurement_set, measure: bust, value: 0)  
       item_band = MeasureItem.create(measurement_set: @measurement_set, measure: band, value: 0)
-      @measurement_set.customer = Spree::User.new()   
+      #@measurement_set.customer = Spree::User.new()   
       if @measurement_set.save
         redirect_to spree.edit_measurement_set_path(@measurement_set)       
       else
