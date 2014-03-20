@@ -55,11 +55,22 @@ module Spree
     def next
       case state
       when 'active' then return self.address!
-    
       when 'address' then return self.bust!
       when 'bust' then return self.band!
       when 'band' then return self.confirm!
       when 'confirm' then return self.complete! 
+      end   
+      return false
+    end
+
+    def prev
+      case state
+      when 'active' then return ''
+      when 'address' then return 'active'
+      when 'bust' then return 'address'
+      when 'band' then return 'bust'
+      when 'confirm' then return 'band'
+      when 'completed' then return 'confirm'
       end   
       return false
     end

@@ -9,10 +9,10 @@
         <% if ['active','address','confirm','complete'].include? @measurement_set.state   %>   
           <%= render state, :form => form %>
         <% else %>
-          <%= render 'measurement', {:form => form, :measure => Spree::Measure.find_by_name state } %>
+          <%= render 'measurement', {:form => form, :measure => Spree::Measure.find_by_name(state.capitalize) } %>
         <% end %>
       <% end %>
-    </div>
+    </div> 
     <% if @measurement_set.state != 'confirm' %>
       <div ">
         <%= render :partial => 'summary', :locals => { :measurement_set => @measurement_set } %>

@@ -6,5 +6,33 @@
 </p>
 
 
-<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
+<div class="col-sm-6  ">
+ <h2  class="text-center"> Customer </h2>
+ <% sa = @measurement_set.customer.ship_address %>
+ <h3>  <%= "#{sa.firstname} #{sa.lastname}" %> </h3>
+ <h3> Email: <%= @measurement_set.customer.email %> </h3>
+ <h3> Phone: <%= "#{sa.phone} "%>  </h3>
+ <h3> <%= "#{sa.address1} #{sa.address2} #{sa.city}"%>, 
+      <%=  Spree::State.find( sa.state_id ).abbr if Spree::State.find(sa.state_id)  %>, 
+      <%=  Spree::Country.find( sa.country_id ).iso if Spree::State.find(sa.country_id) %>
+      <%= " #{sa.zipcode}. "%></h3>
+ <br>
+ <h2  class="text-center"> Seller </h2>
+ <h3> <%= spree_current_user.email %> </h3>
+ 
+
+</div>
+<div class="col-sm-6  ">
+  <h2  class="text-center"> Measurement</h2>
+ <% @measurement_set.measure_items.each do |measure_item|  %>
+  <h3> <%= measure_item.measure.name %>:  <%= measure_item.value %> </h3>
+ <% end %>
+
+
+</div>
+
+</div>
+
+<%= link_to 'Edit', edit_measurement_set_path(@measurement_set, {state: @measurement_set.prev} )%> 
+
 

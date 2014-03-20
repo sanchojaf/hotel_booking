@@ -1,6 +1,11 @@
 <div class="container">
   <div class=" col-sm-4">
-    <h2><%= link_to "< Previus ", :back, :class => 'col-sm-2 btn btn-lg btn-success btn-block' %></h2>
+    <h2>
+      <% unless @measurement_set.state == 'active' %>
+      <%= link_to "< Previus ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
+                                  :class => 'col-sm-2 btn btn-lg btn-success btn-block' %>
+      <% end %>
+    </h2>
   </div >
   <div class=" col-sm-4 pull-right">
     <h2><%= submit_tag "Next >", :class => 'col-sm-2 btn btn-lg btn-success btn-block ' %></h2>

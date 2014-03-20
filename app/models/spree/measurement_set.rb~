@@ -55,11 +55,22 @@ module Spree
     def next
       case state
       when 'active' then return self.address!
-    
       when 'address' then return self.bust!
       when 'bust' then return self.band!
       when 'band' then return self.confirm!
       when 'confirm' then return self.complete! 
+      end   
+      return false
+    end
+
+    def prev
+      case state
+      when 'active' then return ''
+      when 'address' then return 'active'
+      when 'bust' then return 'address'
+      when 'band' then return 'band'
+      when 'confirm' then return 'band'
+      when 'completed' then return 'confirm'
       end   
       return false
     end
@@ -71,7 +82,7 @@ module Spree
       if attributes[:measure_item].present?              
         measure = Spree::Measure.find_by_name(params[:state].capitalize)
         measure_items.each do |measure_item|
-          if measure_tem.measure.id == measure.id
+          if measure_item.measure.id == measure.id
             return false unless measure_item.update_attributes(:value => attributes[:measure_item][:value])   
           end
         end
