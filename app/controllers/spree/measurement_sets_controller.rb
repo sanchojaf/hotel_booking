@@ -60,7 +60,7 @@ module Spree
       if params[:state].present?
          @measurement_set.state = params[:state]
          @measurement_set.save
-         params[:state] = nil
+         #params[:state] = nil
       end
     end
     def completion_route
