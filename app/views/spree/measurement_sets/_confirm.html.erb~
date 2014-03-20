@@ -1,31 +1,45 @@
+<div class="col-sm-6">   
+  <%=  form_for @measurement_set do |form| %>     
+    <%= render 'active', :form => form %>             
+    <%= render 'address', :form => form %>        
+  <% end %>    
+</div>
 
-<div class="col-sm-12  panel panel-default">
-  
- <div class="col-sm-6  ">
-   <h2  class="text-center"> Customer </h2>
-   <% sa = @measurement_set.customer.ship_address %>
-   <h3>  <%= "#{sa.firstname} #{sa.lastname}" %> </h3>
-   <h3> Email: <%= @measurement_set.customer.email %> </h3>
-   <h3> Phone: <%= "#{sa.phone} "%>  </h3>
-   <h3>  <%= "#{sa.address1} #{sa.address2} #{sa.city}"%>, 
-                <%=  Spree::State.find( sa.state_id ).name if Spree::State.find(sa.state_id)  %>, 
-                <%=  Spree::Country.find( sa.country_id ).iso if Spree::State.find(sa.country_id) %>
-                <%= " #{sa.zipcode}. "%></h3>
-   <br>
-   <h2  class="text-center"> Seller </h2>
-   <h3> <%= spree_current_user.email %> </h3>
-   
- 
-  </div>
-  <div class="col-sm-6  ">
-    <h2  class="text-center"> Measurement</h2>
-   <% @measurement_set.measure_items.each do |measure_item|  %>
-    <h3> <%= measure_item.measure.name %>:  <%= measure_item.value %> </h3>
-   <% end %>
+<div class="col-sm-6"   >    
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= Spree.t(:measuremet_set) %></h3>
+    </div>
+    <% @measurement_set.measure_items.each do |measure_item|  %>
+      <%=  form_for @measurement_set do |form| %>        
+          <%= form.fields_for :measure_item do |mi_form| %>
+            <div class="col-sm-12  "> 
+              <div class="col-sm-4 col-sm-offset-2  "> 
+               <h4 ><%= measure_item.measure.name %></h4>
+              </div>
+              <div class="col-sm-4  ">                
+                <%= mi_form.text_field :value, :class => 'form-control', :placeholder => measure_item.value %>
+              </div>                  
+              <%= submit_tag "submit", :class => 'hide btn  btn-block ' %></h2>                    
+           </div>      
+          <% end %> 
+      <% end %>        
+    <% end %>     
+  </div> 
+</div>
+
+<div class="col-sm-6 " >
+  <%=  form_for @measurement_set do |form| %>
+    <div class="col-sm-6 " >
+    <%= link_to "< Previus ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
+                                  :class => 'col-sm-3 btn btn-lg btn-success btn-block' %>
+    </div>
+    <div class="col-sm-6 " >
+    <%= submit_tag "Confirm !", :class => 'col-sm-3 btn btn-lg btn-success btn-block ' %>
+  <%  end %>  
+    </div>
+
+</div>
 
 
-  </div>
 
- </div>
-
-<%= render 'indicator'%>

@@ -15,9 +15,7 @@
   <div class="form-group">
     <%= f.phone_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)  %>
   </div>
-  <div class="panel-body text-center">  
-    <%= image_tag @measurement_set.customer.icon.url(:mini) %>    
-  </div>
+ 
 </div>
 </fieldset>
 
@@ -39,8 +37,6 @@
     <p class="field" id=<%="#{address_id}state" %>>
       <% have_states = !address.country.states.empty?
       %>
-      <%= f.label :state, Spree.t(:state) %><span class='required' id=<%="#{address_id}state-required"%>>*</span><br/>
-
       <% state_elements = [
          f.collection_select(:state_id, address.country.states,
                             :id, :name,

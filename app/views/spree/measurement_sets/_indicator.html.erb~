@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container  navbar-fixed-bottom">
   <div class=" col-sm-4">
     <h2>
       <% unless @measurement_set.state == 'active' %>
-      <%= link_to "< Previus ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
+        <%= link_to "< Previus ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
                                   :class => 'col-sm-2 btn btn-lg btn-success btn-block' %>
       <% end %>
     </h2>

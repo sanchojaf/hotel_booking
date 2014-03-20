@@ -1,8 +1,8 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set.customer || Spree::User.new } %>
-<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+<div class="col-md-6 col-md-offset-3 col-sm-12 ">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= Spree.t(:new_customer) %></h3>
+      <h3 class="panel-title"><%= Spree.t(:customer) %></h3>
     </div>
     <div id="new-customer" class="panel-body" data-hook="login">
        <%= form.fields_for :user do |user| %> 
@@ -15,4 +15,8 @@
 </div>
  
 
-<%= render 'indicator' %>
+<% unless @measurement_set.state == 'confirm' %> 
+  <%= render 'indicator' %>
+<% else %>
+  <%= submit_tag "Submit", :class => ' btn  btn-block hide' %>
+<% end %>

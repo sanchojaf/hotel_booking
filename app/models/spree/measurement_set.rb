@@ -52,17 +52,6 @@ module Spree
     #==========================================
     # Methods
 
-    def next
-      case state
-      when 'active' then return self.address!
-      when 'address' then return self.bust!
-      when 'bust' then return self.band!
-      when 'band' then return self.confirm!
-      when 'confirm' then return self.complete! 
-      end   
-      return false
-    end
-
     def prev
       case state
       when 'active' then return ''
@@ -75,7 +64,21 @@ module Spree
       return false
     end
 
+    def next
+      case state
+      when 'active' then return self.address!
+      when 'address' then return self.bust!
+      when 'bust' then return self.band!
+      when 'band' then return self.confirm!
+      when 'confirm' then return self.complete! 
+      end   
+      return false
+    end
+
+
+
     def update_from_params(params)     
+
       attributes = {}
       attributes = params[:measurement_set] if params[:measurement_set].present?
       

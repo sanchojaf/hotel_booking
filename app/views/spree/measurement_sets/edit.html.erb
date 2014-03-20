@@ -8,7 +8,7 @@
       <%= form_for @measurement_set, :url => update_measurement_sets_path(@measurement_set.state, id: params[:id]), :html => { :id => "measurement_sets_form_#{@measurement_set.state}" } do |form| %>
         <% if ['active','address','confirm','completed'].include? @measurement_set.state   %>   
           <%= render state, :form => form %>
-        <% else %>
+        <% else %>          
           <%= render 'measurement', {:form => form, :measure => Spree::Measure.find_by_name(state.capitalize) } %>
         <% end %>
       <% end %>
