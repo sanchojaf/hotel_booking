@@ -21,7 +21,9 @@
    <% @measurement_set.measure_items.each do |measure_item|  %>
     <h3> <%= measure_item.measure.name %>:  <%= measure_item.value %> </h3>
    <% end %>
+<div class="col-sm-6  ">
 <%= link_to 'Edit', edit_measurement_set_path(@measurement_set, {state: @measurement_set.prev} ), class: ' btn btn-lg btn-success btn-block' %> 
+</div>
 </div>
 
 

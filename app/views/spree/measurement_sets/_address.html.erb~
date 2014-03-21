@@ -1,17 +1,19 @@
-<div class="col-md-12 col-sm-12 ">   
+<%= render :partial => 'spree/shared/error_messages', 
+           :locals => { :target => @measurement_set.customer.ship_address || Spree::Address.new } %>
 
+<div class="col-md-12 col-sm-12 ">   
   <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Address</h3>
       </div>
       <div class="panel-body" >
-        <%= form.fields_for :ship_address, (@measurement_set.customer.ship_address || Spree::Address.default(@measurement_set.customer, "ship")) do |sa_form| %>
-          <% sa_form.object ||= @measurement_set.customer.address || Spree::Address.new(country: Spree::Country.new) %>
+        <%= form.fields_for :ship_address, (@measurement_set.customer.ship_address ||
+                            Spree::Address.default(@measurement_set.customer, "ship")) do |sa_form| %>
+          <% sa_form.object ||= @measurement_set.customer.address || Spree::Address.new %>
           <%= render :partial => 'address_form', :locals => { :f => sa_form, :type => "shipping" } %>
         <% end %>
       </div>
   </div>
-
 </div>
 <% unless @measurement_set.state == 'confirm' %> 
   <%= render 'indicator' %>

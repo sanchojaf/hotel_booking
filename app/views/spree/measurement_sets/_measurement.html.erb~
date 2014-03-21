@@ -1,7 +1,6 @@
 <h1><%= @measurement_set.state.capitalize %></h1>
 
-<div class='col-md-8 col-md-offset-2'>  
-  
+<div class='col-md-8 col-md-offset-2 col-sm-12 '>  
    <%= form.fields_for :measure_item do |measure_item_field| %> 
     <h3> 
       <% mid = (( measure.min + measure.max).to_f/2).to_i %>
@@ -9,16 +8,14 @@
       <br>
     </h3>       
   <% end %>
- 
 </div>
 
-<div class='col-md-12'> 
+<div>
+  <br>
   <%= render 'indicator'%>
 </div>
 
-<!-- select all range inputs and make them ranges -->
 <script>
   $(":range").rangeinput();
-  
 </script>
 

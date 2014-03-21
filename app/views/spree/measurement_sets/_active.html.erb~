@@ -1,10 +1,11 @@
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set.customer || Spree::User.new } %>
+<%= render :partial => 'spree/shared/error_messages', 
+           :locals => { :target => @measurement_set.customer || Spree::User.new } %>
 
 <%=  form.fields_for :new_user do |user| %> 
   <%= render 'user', :user => user  %>
 <% end %>
 
-<% if @measurement_set.state == 'active' %>
+<% if @measurement_set.state == 'active' and @measurement_set.customer.nil? %>
   <%=  form.fields_for :user do |user| %>
     <%= render 'search_user', :user => user %>
   <% end %>  

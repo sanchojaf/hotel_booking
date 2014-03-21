@@ -1,8 +1,7 @@
-<% address_id = 's' %>
 <% address_type = 'shipping' 
    address_id = address_type.chars.first
    address = Spree::Address.new 
-   address.country_id = 49 # US    
+   address.country_id = 49 #US    
 %>
 <fieldset class="col-md-6  col-sm-6 ">
 <div class="inner"  data-hook=<%="#{address_type}_inner" %>>
