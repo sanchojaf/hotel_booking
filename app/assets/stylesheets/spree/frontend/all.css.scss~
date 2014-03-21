@@ -5,7 +5,6 @@
  *
  * require store/spree_frontend
  * require normalize
- * require spree/frontend/range
  * require store/screen
  *= require_self
  *= require_tree .

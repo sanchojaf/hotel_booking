@@ -39,8 +39,8 @@ module Spree
 
     def create
       @measurement_set = MeasurementSet.new() #measurement_set_params
-      bust = Measure.find_or_create_by_name( name: 'Bust', min: 3 , max: 50) 
-      band = Measure.find_or_create_by_name( name: 'Band', min: 2 , max: 40) 
+      bust = Measure.find_or_create_by_name( name: 'Bust', min: 30 , max: 50) 
+      band = Measure.find_or_create_by_name( name: 'Band', min: 23 , max: 40) 
       item_bust = MeasureItem.create(measurement_set: @measurement_set, measure: bust, value: 0)  
       item_band = MeasureItem.create(measurement_set: @measurement_set, measure: band, value: 0)
       #@measurement_set.customer = Spree::User.new()   

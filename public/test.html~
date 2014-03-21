@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>We're sorry, but something went wrong (500)</title>
+  <style>
+  body {
+    background-color: #EFEFEF;
+    color: #2E2F30;
+    text-align: center;
+    font-family: arial, sans-serif;
+  }
+
+  output { 
+    position: absolute;
+    background-image: linear-gradient(#444444, #999999);
+    width: 40px; 
+    height: 30px; 
+    text-align: center; 
+    color: white; 
+    border-radius: 10px; 
+    display: inline-block; 
+    font: bold 15px/30px Georgia;
+    bottom: 175%;
+    left: 0;
+  }
+  output:after { 
+    content: "";
+    position: absolute; 
+    width: 0;
+    height: 0;
+    border-top: 10px solid #999999;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -1px;
+  }
+  form { position: relative; margin: 50px; width: 1200px; }
+  div.dialog {
+    width: 25em;
+    margin: 4em auto 0 auto;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #BBB;
+    border-top: #B00100 solid 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: white;
+    padding: 7px 4em 0 4em;
+  }
+
+  h1 {
+    font-size: 100%;
+    color: #730E15;
+    line-height: 1.5em;
+  }
+
+  body > p {
+    width: 33em;
+    margin: 0 auto 1em;
+    padding: 1em 0;
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-bottom-color: #999;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-color: #DADADA;
+    color: #666;
+    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+  </style>
+
+
+</head>
+
+
+<body>
+ <form>
+  <input type="range" name="foo" min="0" max="100">
+  <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+  </form>
+
+
+  <script>
+
+    function modifyOffset() {
+	    var el, newPoint, newPlace, offset, siblings, k;
+	    width    = this.offsetWidth;
+	    newPoint = (this.value - this.getAttribute("min")) / (this.getAttribute("max") - this.getAttribute("min"));
+	    offset   = -1;
+	    if (newPoint < 0) { newPlace = 0;  }
+	    else if (newPoint > 1) { newPlace = width; }
+	    else { newPlace = width * newPoint + offset; offset -= newPoint;}
+	    siblings = this.parentNode.childNodes;
+	    for (var i = 0; i < siblings.length; i++) {
+		    sibling = siblings[i];
+		    if (sibling.id == this.id) { k = true; }
+		    if ((k == true) && (sibling.nodeName == "OUTPUT")) {
+			    outputTag = sibling;
+		    }
+	    }
+	    outputTag.style.left       = newPlace + "px";
+	    outputTag.style.marginLeft = offset + "%";
+	    outputTag.innerHTML        = this.value;
+    }
+
+    function modifyInputs() {
+        
+	    var inputs = document.getElementsByTagName("input");
+	    for (var i = 0; i < inputs.length; i++) {
+		    if (inputs[i].getAttribute("type") == "range") {
+			    inputs[i].onchange = modifyOffset;
+
+			    // the following taken from http://stackoverflow.com/questions/2856513/trigger-onchange-event-manually
+			    if ("fireEvent" in inputs[i]) {
+			        inputs[i].fireEvent("onchange");
+			    } else {
+			        var evt = document.createEvent("HTMLEvents");
+			        evt.initEvent("change", false, true);
+			        inputs[i].dispatchEvent(evt);
+			    }
+		    }
+	    }
+    }
+
+    modifyInputs();
+  </script>
+
+</body>
+</html>

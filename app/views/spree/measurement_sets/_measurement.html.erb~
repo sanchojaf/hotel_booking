@@ -1,19 +1,24 @@
-<h1><%= @measurement_set.state %></h1>
+<h1><%= @measurement_set.state.capitalize %></h1>
 
-<div >  
-  <div class="well text-right form-buttons" data-hook="buttons">
-     <%= form.fields_for :measure_item do |measure_item_field| %> 
-        <h3> 
-          <% mid = (( measure.min + measure.max).to_f/2).to_i %>
-          <%=  measure_item_field.range_field :value, { min: measure.min , max: measure.max, step: 5, value: mid } %> 
-        </h3>       
-    <% end %>
-  </div>
+<div class='col-md-8 col-md-offset-2'>  
+  
+   <%= form.fields_for :measure_item do |measure_item_field| %> 
+    <h3> 
+      <% mid = (( measure.min + measure.max).to_f/2).to_i %>
+      <%=  measure_item_field.range_field :value, { min: measure.min , max: measure.max, step: 5, value: mid } %> 
+      <br>
+    </h3>       
+  <% end %>
+ 
 </div>
 
-<%= render 'indicator'%>
+<div class='col-md-12'> 
+  <%= render 'indicator'%>
+</div>
 
 <!-- select all range inputs and make them ranges -->
 <script>
   $(":range").rangeinput();
+  
 </script>
+
