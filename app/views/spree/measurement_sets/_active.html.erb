@@ -1,21 +1,18 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set.customer || Spree::User.new } %>
-<div class="col-md-12 col-sm-12 ">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= Spree.t(:customer) %></h3>
-    </div>
-    <div id="new-customer" class="panel-body" data-hook="login">
-       <%= form.fields_for :user do |user| %> 
-         <div data-hook="signup_inside_form">
-           <% user.object ||= @measurement_set.customer || Spree::User.new %>
-          <%= render :partial => 'user_form', :locals => { :f => user } %>
-         </div>     
-      <% end %> 
-    </div>  
-  </div>
-</div>
- 
+
+<%=  form.fields_for :new_user do |user| %> 
+  <%= render 'user', :user => user  %>
+<% end %>
+
+<% if @measurement_set.state == 'active' and @measurement_set.customer.nil? %>
+  <%=  form.fields_for :user do |user| %>
+    <%= render 'search_user', :user => user %>
+  <% end %>  
+<% end %>  
 
 <% unless @measurement_set.state == 'confirm' %> 
   <%= render 'indicator' %>
 <% end %>
+
+
+

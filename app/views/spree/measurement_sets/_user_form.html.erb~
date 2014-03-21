@@ -1,14 +1,36 @@
-<fieldset id="password-credentials" class="col-md-6  col-sm-12 ">
-  <div class="form-group">
-    <%= f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email) %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.hidden_field :password %>
-  </div> 
-  <div class="form-group">
-    <%= f.hidden_field :password_confirmation %>
-  </div> 
+<div class="col-md-8 col-sm-6 ">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%if @measurement_set.state == 'active' %>
+        <h3 class="panel-title"><%= Spree.t(:new_customer) %></h3>
+      <% else %>
+        <h3 class="panel-title"><%= Spree.t(:customer) %></h3>
+      <% end %>
+    </div>
+    <div id="new-customer" class="panel-body" data-hook="login">
+       
+         <div data-hook="signup_inside_form">
+           <% user.object ||= @measurement_set.customer || Spree::User.new %>
+           
+              <fieldset id="password-credentials" class="col-md-12  col-sm-12 ">
+                <div class="form-group">
+                  <%= user.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email) %>
+                </div>
+                
+                <div class="form-group">
+                  <%= user.hidden_field :password %>
+                </div> 
+                <div class="form-group">
+                  <%= user.hidden_field :password_confirmation %>
+                </div> 
 
-</fieldset>
-<div data-hook="signup_below_password_fields"></div>
+              </fieldset>
+              <div data-hook="signup_below_password_fields"></div>         
+         </div>                 
+    </div>  
+  </div>
+</div>
+
+
+
+

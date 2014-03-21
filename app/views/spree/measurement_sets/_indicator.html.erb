@@ -1,5 +1,5 @@
-<div class="container ">
-  <div class=" col-sm-4">
+<div class="container col-sm-12 col-md-12 ">
+  <div class=" col-sm-4 col-md-4">
     <h2>
       <% unless @measurement_set.state == 'active' %>
         <%= link_to "< Previous ", edit_measurement_set_path(@measurement_set, state: @measurement_set.prev ), 
@@ -7,7 +7,7 @@
       <% end %>
     </h2>
   </div >
-  <div class=" col-sm-4 pull-right">
+  <div class=" col-sm-4 col-md-4 pull-right">
     <%= submit_tag "Next >", :class => 'col-sm-2 btn btn-lg btn-success btn-block ' %>
   </div >
 </div>
