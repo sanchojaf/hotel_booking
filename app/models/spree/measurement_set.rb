@@ -16,7 +16,6 @@ module Spree
       after_transition :on => :band, :do => :perform_band 
       after_transition :on => :confirm, :do => :perform_confirmation
       after_transition :on => :complete, :do => :perform_complete
-
     
       event :address do 
         transition [ :active, :address ] => :address
@@ -37,24 +36,11 @@ module Spree
     end
 
     #==========================================
-    # Callbacks
-
-    after_initialize do |measurement_set|
-     unless measurement_set.measure_items
-       # band = Measure.find_or_create_by_name( name: 'Band', min: 2 , max: 40) 
-       # bust = Measure.find_or_create_by_name( name: 'Bust', min: 3 , max: 50) 
-       # item_band = MeasureItem.create(measurement_set: measurement_set, measure: band, value: 0)
-       # item_bust = MeasureItem.create(measurement_set: measurement_set, measure: bust, value: 0)  
-       # measurement_set.customer = Spree::User.new()   
-     end
-    end
-
-    #==========================================
     # Methods
 
-    def prev
+    def prev    
       case state
-      when 'active' then return ''
+      when 'active' then return nil
       when 'address' then return 'active'
       when 'bust' then return 'address'
       when 'band' then return 'bust'
@@ -95,9 +81,7 @@ module Spree
         end
       end
 
-      puts "params ********************** #{params} ******************"
       if attributes[:new_user].present? && attributes[:new_user][:email].present?   
-         puts "ENTRO EN UN NUEVO USER *************** #{params} ******************" 
         if customer.nil?
           gp = generate_password
           params[:measurement_set][:new_user][:password] = gp
@@ -156,14 +140,15 @@ module Spree
     end
    
     def user_set_params(params)
-      params.require(:measurement_set).require(:user).permit( :email) #, :password, :password_confirmation
+      params.require(:measurement_set).require(:user).permit( :email)
     end
 
     def address_set_params(params)
       params.require(:measurement_set).require(:ship_address).permit( :firstname, :lastname, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone )
     end
 
-    def generate_password
+    #TODO: improve gerations.
+    def generate_password    
       "123456"
     end
 
