@@ -34,8 +34,7 @@
 
   <% if Spree::Config[:address_requires_state] %>
     <p class="field" id=<%="#{address_id}state" %>>
-      <% have_states = !address.country.states.empty?
-      %>
+      <% have_states = !address.country.states.empty? %>
       <% state_elements = [
          f.collection_select(:state_id, address.country.states,
                             :id, :name,

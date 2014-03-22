@@ -1,27 +1,38 @@
 
-  <div class="col-md-6 col-sm-6 ">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= Spree.t(:search_customer) %>                    
-      </div>   
-      <% user.object ||= @measurement_set.customer || Spree::User.new %>
-      <div id="new-customer" class="panel-body" data-hook="login">           
+<div class="col-md-6 col-sm-6 ">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= Spree.t(:search_customer) %>                    
+    </div>   
+    <% user.object ||=  Spree::User.new %>
+    <div id="new-customer" class="panel-body" data-hook="login">           
 
-        <p class="field" id=<%="#{@measurement_set.id}customer" %> >
-          <% customers = Spree::User.all.collect {|u| u if u.name }.compact %>
+      <p class="field" id=<%="#{@measurement_set.id}state"%> >      
+        <% customers = Spree::User.all.collect {|u| u if u.name }.compact %>
 
-          <% costumer_elements = [
-             user.text_field(:email,
-                              :class => 'form-control required',
-                              :placeholder => "#{Spree.t(:email)}",
-                              :disabled => false)
-             ].join.gsub('"', "'").gsub("\n", "")       
-          %>
-          <%= javascript_tag do -%>
-            $('#<%="#{@measurement_set.id}customer" %>').append("<%== costumer_elements %>");
-          <% end %>
-        </p>          
-      </div>  
-    </div>
+        <% costumer_elements = [
+           user.collection_select(:email, customers, :id, :name,                       
+                            {:include_blank => true},
+                            {:class => 'form-control required' ,
+                            :disabled => false}) +
+           user.text_field(:email,
+                           :class => 'form-control hidden',
+                           :placeholder => "Existed Email",
+                           :disabled => true )
+           ].join.gsub('"', "'").gsub("\n", "")       
+        %>
+        <%= javascript_tag do -%>
+          $('#<%="#{@measurement_set.id}state"%>').append("<%== costumer_elements %>");
+        <% end %>
+        <noscript>
+          <%= form.text_field :customer_id, :class => 'form-control required' %>
+        </noscript>
+      </p>          
+    </div>  
   </div>
+</div>
+
+
+
+
 

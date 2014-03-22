@@ -1,0 +1,35 @@
+<table>
+  <thead>
+    <tr>
+      <th><h3>Email</h3></th>
+      <th><h3>Measurement</h3></th>
+      <th><h3>Value</h3></th>
+      <th><h3>Date</h3></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @measurement_sets.each do |measurement_set| %>
+        <% measurement_set.measure_items.each do |measure_item| %>
+          <% if measure_item.measure %>
+          <tr>
+            <td><h3><%=  measurement_set.customer.email if measurement_set.customer %></h3></td>
+            <td><h3><%= measure_item.measure.name  %></h3></td>
+            <td><h3><%= measure_item.value  %></h3></td>
+            <td><h3><%= measure_item.updated_at.to_date.to_s %></h3></td>      
+            <td><%= link_to 'Show', measurement_set %></td>
+            <td><%= link_to 'Edit', edit_measurement_set_path(measurement_set) %></td>
+            <td><%= link_to 'Destroy', measurement_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+         <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Measurement Set', new_measurement_set_path %>

@@ -5,7 +5,7 @@ module Spree
 
     def update
       if @measurement_set.update_from_params(params)  
-        flash[:notice] = #Spree.t('measurement_sets.action.success', number: @measurement_set.id) 
+        # flash[:notice] = Spree.t('measurement_sets.action.success', number: @measurement_set.id) 
         unless @measurement_set.next
           flash[:error] = @measurement_set.errors.full_messages.join("\n")
           redirect_to measurement_set_edit_path(@measurement_set.state) and return
@@ -23,6 +23,10 @@ module Spree
     end
 
     def edit       
+    end
+
+    def index
+      @measuremet_sets = MeasurementSet.all
     end
 
     def show

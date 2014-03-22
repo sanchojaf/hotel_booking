@@ -90,12 +90,13 @@ module Spree
           return false unless user.save
           self.customer = user
         else
-          return false unless customer.email = attributes[:new_user][:email]
+          return false unless customer.id = attributes[:new_user][:email]
         end                                               
       end
     
-      if attributes[:user].present? && attributes[:user][:email].present?      
-          return false unless self.customer = Spree::User.find_by_email(attributes[:user][:email])
+      if attributes[:user].present? && attributes[:user][:id].present?   
+          puts "**********************ENTRO EN USER #{params}"   
+          return false unless self.customer = Spree::User.find(attributes[:user][:id])
       end
 
       if attributes[:ship_address].present?
