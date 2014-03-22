@@ -4,13 +4,13 @@
    <%= form.fields_for :measure_item do |measure_item_field| %> 
     <h3> 
       <% mid = (( measure.min + measure.max).to_f/2).to_i %>
-      <%=  measure_item_field.range_field :value, { min: measure.min , max: measure.max, step: 5, value: mid } %> 
+      <%=  measure_item_field.range_field :value, { min: measure.min , max: measure.max, step: 0.5, value: mid } %> 
       <br>
     </h3>       
   <% end %>
 </div>
 
-<div>
+<div class='col-md-12 col-sm-12 '>
   <br>
   <%= render 'indicator'%>
 </div>

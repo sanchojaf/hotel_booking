@@ -1,4 +1,5 @@
 <%=  form_for @measurement_set do |form| %> 
+
   <div class="col-sm-6 col-md-6">             
       <%= render 'active', :form => form %>             
       <%= render 'address', :form => form %>              
@@ -13,12 +14,15 @@
         <% i = 0 %>                      
         <%= form.fields_for :measure_items do |mi_form| %>         
           <div class="col-sm-12  col-md-12  "> 
-            <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2"> 
-              <%= mi_form.label :name, @measurement_set.measure_items[i].measure.name %>
+            <div class="col-md-2 col-sm-3"> 
+              <h4><%= mi_form.label :name, @measurement_set.measure_items[i].measure.name %></h4>
             </div>
-            <div class="col-sm-4 col-md-4 ">                
+            <div class="col-md-3 col-sm-4 pull-left ">                
               <%= mi_form.text_field :value, :class => 'form-control' %>
-            </div>                                                   
+            </div>
+            <div class="pull-left ">                
+              <h4>inches</h4>
+            </div>                                       
           </div>     
           <%  i = i + 1 %>                 
         <% end %>  

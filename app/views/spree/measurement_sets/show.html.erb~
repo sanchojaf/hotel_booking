@@ -6,11 +6,13 @@
    <% sa = @measurement_set.customer.ship_address %>
    <h3>  <%= "#{sa.firstname} #{sa.lastname}" %> </h3>
    <h3> Email: <%= @measurement_set.customer.email %> </h3>
-   <h3> Phone: <%= "#{sa.phone} "%>  </h3>
-   <h3> <%= "#{sa.address1} #{sa.address2} #{sa.city}"%>, 
-        <%=  Spree::State.find( sa.state_id ).abbr if Spree::State.find(sa.state_id)  %>, 
-        <%=  Spree::Country.find( sa.country_id ).iso if Spree::State.find(sa.country_id) %>
-        <%= " #{sa.zipcode}. "%></h3>
+   <h3> Phone: <%= "#{sa.phone} "%> </h3>
+   <h3> 
+      <%= "#{sa.address1} #{sa.address2} #{sa.city}"%>, 
+      <%=  Spree::State.find(sa.state_id).abbr if Spree::State.find(sa.state_id)  %>, 
+      <%=  Spree::Country.find(sa.country_id).iso if Spree::State.find(sa.country_id) %>
+      <%= " #{sa.zipcode}."%>
+   </h3>
    <br>
 
    <h2  class="text-center"> Seller </h2>
