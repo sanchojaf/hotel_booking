@@ -1,22 +1,15 @@
 <div data-hook>
-  <%=  render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set } %>
-  
-  <% state = @measurement_set.state %>
-   
+  <%=  render :partial => 'spree/shared/error_messages', :locals => { :target => @measurement_set } %>  
+  <% state = @measurement_set.state %>   
   <div class="row" data-hook="checkout_content">
     <div >
-      <%= form_for @measurement_set, :url => update_measurement_sets_path(@measurement_set.state, id: params[:id]), :html => { :id => "measurement_sets_form_#{@measurement_set.state}" } do |form| %>
-        <% if ['active','address','confirm','completed'].include? @measurement_set.state   %>   
+      <%= form_for @measurement_set, :url => update_measurement_sets_path(state, id: params[:id]), :html => { :id => "measurement_sets_form_#{state}" } do |form| %>
+        <% if ['active','address','confirm','completed'].include? state   %>   
           <%= render state, :form => form %>
         <% else %>          
           <%= render 'measurement', {:form => form, :measure => Spree::Measure.find_by_name(state.capitalize) } %>
         <% end %>
       <% end %>
     </div> 
-    <% if @measurement_set.state != 'confirm' %>
-      <div ">
-        <%= render :partial => 'summary', :locals => { :measurement_set => @measurement_set } %>
-      </div>
-    <% end %>
   </div>
 </div>

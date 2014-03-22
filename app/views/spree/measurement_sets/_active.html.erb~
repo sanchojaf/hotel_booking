@@ -7,7 +7,7 @@
 
 <% if @measurement_set.state == 'active' and @measurement_set.customer.nil? %>
   <%=  form.fields_for :user do |user| %>
-    <%= render 'search_user', :user => user %>
+    <%= render 'search_user', {:user => user, :form => form} %>
   <% end %>  
 <% end %>  
 

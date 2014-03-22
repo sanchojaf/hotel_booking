@@ -69,7 +69,9 @@ module Spree
         measure = Spree::Measure.find_by_name(params[:state].capitalize)
         measure_items.each do |measure_item|
           if measure_item.measure.id == measure.id
-            return false unless measure_item.update_attributes(:value => attributes[:measure_item][:value]) 
+             unless measure_item.update_attributes(:value => attributes[:measure_item][:value]) 
+               errors.add(:base, 'Invalid measurement value.') and return false
+             end
           end  
         end
       end
@@ -77,7 +79,9 @@ module Spree
       if attributes[:measure_items_attributes].present?
          attributes[:measure_items_attributes].each do |key, hash_value |           
           measure_item = measure_items[key.to_i]        
-          return false unless measure_item.update_attributes(:value =>  hash_value[:value])                      
+          unless measure_item.update_attributes(:value =>  hash_value[:value])
+            errors.add(:base, 'Invalid field.') and return false           
+          end                   
         end
       end
 
@@ -87,30 +91,33 @@ module Spree
           params[:measurement_set][:new_user][:password] = gp
           params[:measurement_set][:new_user][:password_confirmation] = gp   
           user = Spree.user_class.new new_user_set_params(params)
-          return false unless user.save
+          unless user.save
+            errors.add(:base, 'Invalid email.') and return false
+          end
           self.customer = user
         else
           return false unless customer.id = attributes[:new_user][:email]
         end                                               
       end
     
-      if attributes[:user].present? && attributes[:user][:id].present?   
-          puts "**********************ENTRO EN USER #{params}"   
+      if attributes[:user].present? && attributes[:user][:id].present?     
           return false unless self.customer = Spree::User.find(attributes[:user][:id])
       end
 
       if attributes[:ship_address].present?
-
         if self.customer.ship_address
-          return false unless self.customer.ship_address.update_attributes address_set_params(params) 
+          unless self.customer.ship_address.update_attributes address_set_params(params) 
+            errors.add(:base, 'Invalid Address Field') and return false
+          end
         else
           address = Spree::Address.new address_set_params(params)
-          return false unless address.save
+          unless address.save
+            errors.add(:base, 'Invalid address fields.') and return false
+          end
           self.customer.ship_address = address      
           self.customer.save            
         end 
-      end
-      
+      end      
       return self.save
     end
 

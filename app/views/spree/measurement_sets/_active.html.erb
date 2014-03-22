@@ -1,6 +1,3 @@
-<%= render :partial => 'spree/shared/error_messages', 
-           :locals => { :target => @measurement_set.customer || Spree::User.new } %>
-
 <%=  form.fields_for :new_user do |user| %> 
   <%= render 'user', :user => user  %>
 <% end %>

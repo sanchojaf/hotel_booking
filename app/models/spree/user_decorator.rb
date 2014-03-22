@@ -2,7 +2,7 @@ module Spree
   User.class_eval do
     has_many :measurement_sets
     has_many :customers, :through => :measurement_sets #if role is seller
-    has_many :sellers, :through => :measurement_sets # if role is customer
+    has_many :sellers, :through => :measurement_sets #if role is customer
 
     def name      
       return "#{ship_address.first_name} #{ship_address.last_name}" if ship_address  

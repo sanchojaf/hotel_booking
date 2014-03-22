@@ -26,7 +26,7 @@ module Spree
     end
 
     def index
-      @measuremet_sets = MeasurementSet.all
+      @measurement_sets = MeasurementSet.all
     end
 
     def show
