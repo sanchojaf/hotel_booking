@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 
 <div class="col-sm-6 col-md-6 ">
 
@@ -23,7 +25,7 @@
 <div class="col-sm-6 col-md-6 ">
   <h2  class="text-center"> Measurement</h2>
    <% @measurement_set.measure_items.each do |measure_item|  %>
-    <h3> <%= measure_item.measure.name %>:  <%= measure_item.value %> </h3>
+    <h3> <%= measure_item.measure.name %>:  <%= "#{measure_item.value} " %> inches </h3>
    <% end %>
   <div class="col-sm-6 col-md-6 pull-right ">
     <%= link_to 'Edit', edit_measurement_set_path(@measurement_set, {state: @measurement_set.prev} ), 

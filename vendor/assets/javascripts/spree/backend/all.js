@@ -10,3 +10,4 @@
 //= require spree/backend
 
 //= require_tree .
+//= require admin/spree_multi_domain

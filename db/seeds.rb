@@ -10,13 +10,10 @@
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
 Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
-#user1 = Spree::User.create! :title => 'Mr', :first_name => 'Jack', :last_name => 'Jackson', :email => #'jack@g.com', :password => '123qwe', :password_confirmation => '123qwe', :phone => '123452345'
-
-#puts 'New user created: ' << user1.first_name
-
-#user2 = Spree::User.create! :title => 'Mr', :first_name => 'Sev', :last_name => 'Raj', :email => 'sa@g.com', :password #=> '123qwe', :password_confirmation => '123qwe', :phone => '123452345'
-
-#puts 'New user created: ' << user2.first_name
+#user1 = Spree::User.create!  :email => #'jack@g.com', :password => '123qwe', :password_confirmation => '123qwe'
+#puts 'New user created: ' << user1.email
+#user2 = Spree::User.create! :email => 'sa@g.com', :password #=> '123qwe', :password_confirmation => '123qwe'
+#puts 'New user created: ' << user2.email
 
 role = Spree::Role.find_or_create_by_name 'seller'
 
@@ -24,4 +21,6 @@ role = Spree::Role.find_or_create_by_name 'seller'
 #user1.save
 #user2.spree_roles << role
 #user2.save
+
+
 
