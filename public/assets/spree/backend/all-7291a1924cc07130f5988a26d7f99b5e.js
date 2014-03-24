@@ -27530,7 +27530,9 @@ $(document).ready(function(){
         },
         dataType: 'script',
         success: function(response) {
-          el.parents("tr").fadeOut('hide');
+          el.parents("tr").fadeOut('hide', function() {
+            $(this).remove();
+          });
         },
         error: function(response, textStatus, errorThrown) {
           show_flash('error', response.responseText);
@@ -31250,7 +31252,7 @@ startItemSplit = function(event){
     fadeOutTime: 50,
     intentPollInterval: 300
   });
-  $('#item_stock_location').select2({ width: 'resolve', placeholder: 'Choose Location' });
+  $('#item_stock_location').select2({ width: 'resolve', placeholder: Spree.translations.item_stock_placeholder });
 }
 
 completeItemSplit = function(event) {
