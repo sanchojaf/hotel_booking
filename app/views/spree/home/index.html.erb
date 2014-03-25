@@ -1,43 +1,54 @@
 <% if spree_current_user %>
+  <% puts "****************** params in home  #{params}" %>
 
-  <ul class='list-unstyled col-md-6 col-sm-6 '>
-    <li>
-      <%= image_tag "store/mini-icon-1.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' >
-        <%= link_to 'Browse Catalogue', :controller => 'spree/products' %>
-      </h2>
-    </li> 
-    <li>
-      <%= image_tag "store/mini-icon-2.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' >
-        <%= link_to 'Quick Order', cart_path %>
-      </h2>
-    </li> 
-    <li>
-      <%= image_tag "store/mini-icon-3.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' >
-        <%= link_to 'Create Customer', spree.signup_path %>
-      </h2>
-    </li> 
-    <li>
-      <%= image_tag "store/mini-icon-4.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' >
-        <%= link_to 'Measure', new_measurement_set_path %>
-      </h2>
-    </li> 
-    <li>  
-      <%= image_tag "store/mini-icon-5.png", :class => "img-circle pull-left" %>
-      <h2 class='col-md-offset-1 col-sm-offset-2' >
-        <%= link_to 'Tell a Friend' %>
-      </h2>
-    </li> 
-  </ul>
+  <!-- Home to seller Website -->
+  <% if params[:current_store_id] == 2 %>    
+    <ul class='list-unstyled col-md-6 col-sm-6 '>
+      <li>
+        <%= image_tag "store/mini-icon-1.png", :class => "img-circle pull-left" %>
+        <h2 class='col-md-offset-1 col-sm-offset-2' >
+          <%= link_to 'Browse Catalogue', :controller => 'spree/products' %>
+        </h2>
+      </li> 
+      <li>
+        <%= image_tag "store/mini-icon-2.png", :class => "img-circle pull-left" %>
+        <h2 class='col-md-offset-1 col-sm-offset-2' >
+          <%= link_to 'Quick Order', cart_path %>
+        </h2>
+      </li> 
+      <li>
+        <%= image_tag "store/mini-icon-3.png", :class => "img-circle pull-left" %>
+        <h2 class='col-md-offset-1 col-sm-offset-2' >
+          <%= link_to 'Create Customer', spree.signup_path %>
+        </h2>
+      </li> 
+      <li>
+        <%= image_tag "store/mini-icon-4.png", :class => "img-circle pull-left" %>
+        <h2 class='col-md-offset-1 col-sm-offset-2' >
+          <%= link_to 'Measure', new_measurement_set_path %>
+        </h2>
+      </li> 
+      <li>  
+        <%= image_tag "store/mini-icon-5.png", :class => "img-circle pull-left" %>
+        <h2 class='col-md-offset-1 col-sm-offset-2' >
+          <%= link_to 'Tell a Friend' %>
+        </h2>
+      </li> 
+    </ul>
 
-  <div class="panel-body text-center col-md-4 col-sm-6  ">  
-    <%= link_to image_tag(spree_current_user.icon.url(:normal)) %>        
-    <h3><%= spree_current_user.email %></h3>      
-  </div>
-
+    <div class="panel-body text-center col-md-4 col-sm-6  ">  
+      <%= link_to image_tag(spree_current_user.icon.url(:normal)) %>        
+      <h3><%= spree_current_user.email %></h3>      
+    </div>
+  
+  <!-- Home to customer Website -->
+  <% else %>
+    <div data-hook="homepage_products">
+      <% cache(cache_key_for_products) do %>
+        <%= render :partial => 'spree/shared/products', :locals => { :products => @products } %>
+      <% end %>
+    </div>
+  <% end %>
 <% else %> 
 
   <% @body_id = 'login' %>

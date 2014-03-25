@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/sanchojaf/spree_peach_sample.git
-  revision: d73bc243ac10fc8b838f58952e032a9edb3b4e67
+  revision: 8fba2d36ff10b426616c58fe169480435d95db27
   specs:
     spree_peach_sample (2.2.1.beta)
       spree_core (= 2.2.1.beta)
