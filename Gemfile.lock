@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/sanchojaf/spree_peach_sample.git
-  revision: c33c4188cde5be3e38ae5fd41824c038e6ea35c5
+  revision: 25131726d0b88159bf3bf7c0d52d5639b7b23447
   specs:
-    spree_peach_sample (2.2.1.beta)
-      spree_core (= 2.2.1.beta)
+    spree_peach_sample (2.2.2.beta)
+      spree_core (= 2.2.2.beta)
 
 GIT
   remote: git://github.com/spree/spree-multi-domain.git
@@ -18,29 +18,29 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree.git
-  revision: 3efb449dd0aae2e21d70ce3836a69bc65be59b8b
+  revision: 5c331d2c6a1055b4d66f893d41881cbbb86586c5
   branch: 2-2-stable
   specs:
-    spree (2.2.1.beta)
-      spree_api (= 2.2.1.beta)
-      spree_backend (= 2.2.1.beta)
-      spree_cmd (= 2.2.1.beta)
-      spree_core (= 2.2.1.beta)
-      spree_frontend (= 2.2.1.beta)
-      spree_sample (= 2.2.1.beta)
-    spree_api (2.2.1.beta)
+    spree (2.2.2.beta)
+      spree_api (= 2.2.2.beta)
+      spree_backend (= 2.2.2.beta)
+      spree_cmd (= 2.2.2.beta)
+      spree_core (= 2.2.2.beta)
+      spree_frontend (= 2.2.2.beta)
+      spree_sample (= 2.2.2.beta)
+    spree_api (2.2.2.beta)
       rabl (= 0.9.3)
-      spree_core (= 2.2.1.beta)
+      spree_core (= 2.2.2.beta)
       versioncake (~> 1.2.0)
-    spree_backend (2.2.1.beta)
+    spree_backend (2.2.2.beta)
       jquery-rails (~> 3.1.0)
       jquery-ui-rails (~> 4.1.0)
       select2-rails (~> 3.4.7)
-      spree_api (= 2.2.1.beta)
-      spree_core (= 2.2.1.beta)
-    spree_cmd (2.2.1.beta)
+      spree_api (= 2.2.2.beta)
+      spree_core (= 2.2.2.beta)
+    spree_cmd (2.2.2.beta)
       thor (~> 0.14)
-    spree_core (2.2.1.beta)
+    spree_core (2.2.2.beta)
       activemerchant (~> 1.42.3)
       acts_as_list (= 0.3.0)
       awesome_nested_set (~> 3.0.0.rc.3)
@@ -60,14 +60,14 @@ GIT
       state_machine (= 1.2.0)
       stringex (~> 1.5.1)
       truncate_html (= 0.9.2)
-    spree_frontend (2.2.1.beta)
+    spree_frontend (2.2.2.beta)
       canonical-rails (~> 0.0.4)
       jquery-rails (~> 3.1.0)
-      spree_api (= 2.2.1.beta)
-      spree_core (= 2.2.1.beta)
+      spree_api (= 2.2.2.beta)
+      spree_core (= 2.2.2.beta)
       stringex (~> 1.5.1)
-    spree_sample (2.2.1.beta)
-      spree_core (= 2.2.1.beta)
+    spree_sample (2.2.2.beta)
+      spree_core (= 2.2.2.beta)
 
 GIT
   remote: git://github.com/spree/spree_auth_devise.git
@@ -236,7 +236,7 @@ GEM
       activesupport (= 4.0.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.2.0)
+    rake (10.2.1)
     ransack (1.1.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)

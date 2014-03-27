@@ -22,4 +22,4 @@ end
 gem 'spree', github: 'spree/spree', branch: '2-2-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-2-stable'
 gem 'spree_multi_domain', github: 'spree/spree-multi-domain', branch: '2-2-stable'
-gem 'spree_peach_sample', github: 'sanchojaf/spree_peach_sample'
+#gem 'spree_peach_sample', github: 'sanchojaf/spree_peach_sample'
