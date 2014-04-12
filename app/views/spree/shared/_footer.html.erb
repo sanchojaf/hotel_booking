@@ -1,16 +1,10 @@
-<div id="spree-footer" class="footer navbar-fixed-bottom">
+<div id="spree-footer">
 	<div class="container">
-		<footer "  role="navigation">
-		  <div id="footer-left" class="col-sm-6" data-hook>
-		    <p><%= link_to Spree.t(:home), spree.root_path %></li></p>
+		<footer id="footer" class="row" data-hook>
+		  <div id="footer-left" class="col-md-6" data-hook>
+		    <p><%= Spree.t :powered_by  %>&nbsp;<%= link_to 'Spree', 'http://spreecommerce.com/' %></p>
 		  </div>
-      <% if spree_current_user %>
-        <div id="footer-right" class=" nav navbar-nav navbar-right" data-hook>
-          <%= link_to Spree.t(:my_account), spree.account_path %> |
-          <%= link_to Spree.t(:logout), spree.logout_path %>
-        </div>        
-      <% end %>
+		  <div id="footer-right" class="col-md-6" data-hook></div>
 		</footer>
 	</div>
 </div>
-

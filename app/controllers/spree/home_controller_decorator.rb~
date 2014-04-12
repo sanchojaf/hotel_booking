@@ -2,4 +2,9 @@
 Spree::HomeController.class_eval do
   skip_before_filter :authenticate_spree_user!
 
+  def index
+    taxons = Spree::Taxon.find_by_name('Categories').descendants.order(:position)
+    @products = taxons.map { |taxon| taxon.products }.flatten.uniq  
+  end  
+
 end

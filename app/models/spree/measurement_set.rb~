@@ -11,17 +11,14 @@ module Spree
 
     state_machine :initial => :active do
       
-      after_transition :on => :address, :do => :perform_address
+      #after_transition :on => :address, :do => :perform_address
       after_transition :on => :bust, :do => :perform_bust
       after_transition :on => :band, :do => :perform_band 
       after_transition :on => :confirm, :do => :perform_confirmation
       after_transition :on => :complete, :do => :perform_complete
     
-      event :address do 
-        transition [ :active, :address ] => :address
-      end
       event :bust do 
-        transition [ :active,  :address ] => :bust
+        transition [ :active, :bust ] => :bust
       end
       event :band do 
         transition [ :active, :address, :bust ] => :band
@@ -41,8 +38,8 @@ module Spree
     def prev    
       case state
       when 'active' then return nil
-      when 'address' then return 'active'
-      when 'bust' then return 'address'
+      #when 'address' then return 'active'
+      when 'bust' then return 'active'
       when 'band' then return 'bust'
       when 'confirm' then return 'band'
       when 'completed' then return 'confirm'
@@ -52,8 +49,8 @@ module Spree
 
     def next
       case state
-      when 'active' then return self.address!
-      when 'address' then return self.bust!
+      when 'active' then return self.bust!
+      #when 'address' then return self.bust!
       when 'bust' then return self.band!
       when 'band' then return self.confirm!
       when 'confirm' then return self.complete! 
@@ -104,29 +101,29 @@ module Spree
           return false unless self.customer = Spree::User.find(attributes[:user][:id])
       end
 
-      if attributes[:ship_address].present?
-        if self.customer.ship_address
-          unless self.customer.ship_address.update_attributes address_set_params(params) 
-            errors.add(:base, 'Invalid Address Field') and return false
-          end
-        else
-          address = Spree::Address.new address_set_params(params)
-          unless address.save
-            errors.add(:base, 'Invalid address fields.') and return false
-          end
-          self.customer.ship_address = address      
-          self.customer.save            
-        end 
-      end
+#      if attributes[:ship_address].present?
+#        if self.customer.ship_address
+#          unless self.customer.ship_address.update_attributes address_set_params(params) 
+#            errors.add(:base, 'Invalid Address Field') and return false
+#          end
+#        else
+#          address = Spree::Address.new address_set_params(params)
+#          unless address.save
+#            errors.add(:base, 'Invalid address fields.') and return false
+#          end
+#          self.customer.ship_address = address      
+#          self.customer.save            
+#        end 
+#      end
       
       return self.save
     end
 
   private
 
-    def perform_address 
-      self.update_attribute(:action_at, Time.now)
-    end
+#    def perform_address 
+#      self.update_attribute(:action_at, Time.now)
+#    end
 
     def perform_bust 
       self.update_attribute(:action_at, Time.now)
@@ -152,9 +149,9 @@ module Spree
       params.require(:measurement_set).require(:user).permit( :email)
     end
 
-    def address_set_params(params)
-      params.require(:measurement_set).require(:ship_address).permit( :firstname, :lastname, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone )
-    end
+#    def address_set_params(params)
+#      params.require(:measurement_set).require(:ship_address).permit#( :firstname, :lastname, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone )
+#    end
 
     #TODO: improve gerations.
     def generate_password    

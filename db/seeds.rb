@@ -15,7 +15,7 @@ Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 #user2 = Spree::User.create! :email => 'sa@g.com', :password #=> '123qwe', :password_confirmation => '123qwe'
 #puts 'New user created: ' << user2.email
 
-role = Spree::Role.find_or_create_by_name 'seller'
+role = Spree::Role.find_or_create_by_name 'stylist'
 
 #user1.spree_roles << role
 #user1.save

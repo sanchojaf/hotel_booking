@@ -1,0 +1,30 @@
+Spree::UserRegistrationsController.class_eval do
+  before_action :set_default_password, only: [:create]
+  after_action :set_customer, only: [:create]
+
+  Spree::PermittedAttributes.user_attributes.push << [:first_name, :last_name]
+
+private
+  def set_default_password
+    if spree_current_user and spree_current_user.has_spree_role?('seller')
+      session[:seller_id] ||= spree_current_user.id
+      if params[:spree_user][:password].blank?
+        password = generate_password
+        params[:spree_user][:password] = password 
+        params[:spree_user][:password_confirmation] = password
+      end
+    end
+  end
+
+  def set_customer
+    if spree_current_user and spree_current_user.has_spree_role?('user')
+      session[:customer_id] ||= spree_current_user.id
+      puts "*********************** customer es #{spree_current_user.inspect} "
+    end
+  end
+
+  def generate_password
+    "123456"
+  end
+
+end

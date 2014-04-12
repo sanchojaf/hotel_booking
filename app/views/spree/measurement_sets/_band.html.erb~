@@ -1,6 +1,0 @@
-<h1><%= @measurement_set.state %></h1>
-<%= render 'measurement', :locals => { :form => form } %>
-
-
-
-

@@ -1,6 +1,0 @@
-<!-- insert_bottom '[data-hook="admin_user_form_fields"]' -->
-<%= f.field_container :icon do %>
-  <%= f.label :icon, Spree.t(:icon) %><br />
-  <%= f.file_field :icon %>
-<% end %>
-

@@ -781,6 +781,8 @@ ActiveRecord::Schema.define(version: 20140324175766) do
     t.datetime "updated_at"
     t.string   "spree_api_key",          limit: 48
     t.datetime "remember_created_at"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
