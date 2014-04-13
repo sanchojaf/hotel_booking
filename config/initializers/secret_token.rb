@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-TablePeanch::Application.config.secret_key_base = '166bc08417568e9681c4577a09eaf7a220a21fafe30f9311262263e0e6578dae6bbb618b4cdd78f68ec472fa0f403f15ab3e9abe4644527967212b0eb387bb21'
+BookStore::Application.config.secret_key_base = '166bc08417568e9681c4577a09eaf7a220a21fafe30f9311262263e0e6578dae6bbb618b4cdd78f68ec472fa0f403f15ab3e9abe4644527967212b0eb387bb21'

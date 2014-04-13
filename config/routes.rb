@@ -1,4 +1,4 @@
-TablePeanch::Application.routes.draw do
+BookStore::Application.routes.draw do
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -8,22 +8,6 @@ TablePeanch::Application.routes.draw do
 
 
   mount Spree::Core::Engine, :at => '/'
-
-  Spree::Core::Engine.routes.draw do
-    resources :measurement_sets, only: [:edit, :index, :update, :new, :create, :show, :action ] do
-      member do
-        put :confirm
-        put :action
-      end
-    end
-
-    # non-restful measurement stuff
-    patch '/measurement_sets/update/:state', :to => 'measurement_sets#update', :as => :update_measurement_sets
-    #patch '/measurement/action', :to => 'measurement#action', :as => :action_measurement
-    #get '/measurement/:state', :to => 'checkout#edit', :as => :measurement_state
-    #get '/measurement', :to => 'measurement#edit' , :as => :measurement
-  end
-
 
   #root :to => "home#index"
   #mount Spree::Core::Engine, :at => '/'

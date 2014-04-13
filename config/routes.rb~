@@ -10,7 +10,7 @@ TablePeanch::Application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   Spree::Core::Engine.routes.draw do
-    resources :measurement_sets, only: [:edit, :index, :update, :new, :create, :show, :action ]do
+    resources :measurement_sets, only: [:edit, :index, :update, :new, :create, :show, :action ] do
       member do
         put :confirm
         put :action
