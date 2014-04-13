@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TablePeanch::Application.load_tasks
+BookStore::Application.load_tasks
