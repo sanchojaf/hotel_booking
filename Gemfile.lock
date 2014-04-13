@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/sanchojaf/spree_book_sample.git
+  revision: f1586e41202ca17b954ba4011ffec01ab9623a59
+  specs:
+    spree_book_sample (2.2.2.beta)
+      spree_core (= 2.2.2.beta)
+
+GIT
   remote: git://github.com/spree/spree.git
   revision: b2c902cfdaffbb0d9f1787f685fe21e7342df470
   branch: 2-2-stable
@@ -290,6 +297,7 @@ DEPENDENCIES
   sdoc
   spree!
   spree_auth_devise!
+  spree_book_sample!
   sqlite3
   thin
   turbolinks
