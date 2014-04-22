@@ -51,3 +51,8 @@ $icon-font-path: "../../bootstrap/";
 h1 {
   margin-bottom: 30px;
 }
+
+
+#gmaps-output-latitude, #gmaps-output-longitude {
+ display: none;
+}

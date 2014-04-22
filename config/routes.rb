@@ -9,6 +9,10 @@ BookStore::Application.routes.draw do
 
   mount Spree::Core::Engine, :at => '/'
 
+  Spree::Core::Engine.routes.draw do
+    resources :hotels, only: [:index]
+  end
+
   #root :to => "home#index"
   #mount Spree::Core::Engine, :at => '/'
           # The priority is based upon order of creation: first created -> highest priority.
