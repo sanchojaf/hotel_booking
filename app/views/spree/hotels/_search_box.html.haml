@@ -1,0 +1,47 @@
+=# javascript_include_tag "gmaps-auto-complete"
+= form_tag("/hotels", method: "get") do   
+  .col-md-4
+    .row
+      %h5.col-md-4 Check-in
+      .col-md-4
+        %select.form-control{:placeholder => "1"}
+          - for i in 1..31 do
+            %option= i
+      
+      .col-md-4
+        %select.form-control
+          %option Aug, 2013
+          %option Sep, 2013
+    .row     
+      %h5.col-md-4 Check-out
+      .col-md-4
+        %select.form-control{:placeholder => "1"}
+          - for i in 1..31 do
+            %option= i
+      .col-md-4
+        %select.form-control
+          %option Aug, 2013
+          %option Sep, 2013
+   
+   
+  .col-md-4
+    - text_type = {:Adults => 2, :Children => 0, :Infant => 0}
+    - text_type.keys.each do |pax|
+      %h5.col-md-4      
+        = pax   
+
+    - text_type.keys.each do |pax|  
+      .col-md-4
+        %select.form-control{:placeholder => text_type[pax]}
+          - for i in 1..10 do
+            %option= i
+  .col-md-4
+    %h5.col-md-4 Rooms
+    .col-md-4
+      %select.form-control{:placeholder => "1"}
+        - for i in 1..10 do
+          %option{:value => i}
+            = i
+  .row
+    =# submit_tag("Search")
+    %p.col-md-offset-1.btn.btn-info.pull-right{:href => "#"} Search

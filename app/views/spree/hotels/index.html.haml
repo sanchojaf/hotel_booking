@@ -1,0 +1,12 @@
+- @hotels = response_json api_method: "list" #@q 
+.container-fluid
+  %br
+  .row
+    .container-fluid
+      = render 'search_box'
+      =# render 'filter'
+  %br
+  .row
+    .container-fluid
+      - @hotels.each do |hotel|      
+        = render 'item', hotel: hotel

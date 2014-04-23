@@ -1,0 +1,14 @@
+- @product = update_or_create_product( hotel )
+%h3{:itemprop => "name"}
+  = hotel['name']
+  = star = hotel['hotelRating']
+  - 1.upto(star) do
+    %i.icon-star
+  %br/
+  %small.muted
+    = "#{hotel['address1']},#{hotel['city']}, #{hotel['stateProvinceCode']} "
+    %a
+      %span Show at map
+      %i.icon-map-marker
+%p.hidden-phone
+  = strip_tags(Sanitize.clean(CGI.unescapeHTML(hotel['shortDescription'])))

@@ -1,0 +1,13 @@
+- rating = hotel['tripAdvisorRating'].to_i
+- 1.upto(rating) do
+  %i.icon-certificate
+- 5.downto(rating +1) do
+  %i.icon-certificate.icon-white
+%br/
+%div
+  %a.text-info
+    Very good, #{rating}/5
+  %p
+    Score from
+    %strong.count= hotel['tripAdvisorReviewCount']
+    reviews

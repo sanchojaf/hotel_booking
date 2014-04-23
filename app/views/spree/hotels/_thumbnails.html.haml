@@ -1,0 +1,8 @@
+%a.thumbnail{:href => "#"}
+  = image_tag "hotels/#{1 + rand(9)}.jpg"
+.row
+  - 1.upto 2 do
+    %div.col-md-12
+      - 1.upto 3 do
+        %a.thumbnail.col-md-4
+          = image_tag "hotels/#{1 + rand(9)}.jpg"

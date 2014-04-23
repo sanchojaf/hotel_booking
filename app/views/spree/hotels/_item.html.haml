@@ -1,0 +1,10 @@
+.row{:itemscope => "", :itemtype => "http://schema.org/Product"}
+  .col-md-3
+    = render  'thumbnails', hotel: hotel
+  .col-md-7
+    = render 'item_info', hotel: hotel
+    = render template: 'spree/rooms/index', locals: { hotel: hotel }     
+  .col-md-2
+    = render 'rating', hotel: hotel   
+    = render 'base_price', hotel: hotel     
+    
