@@ -1,6 +1,6 @@
 module Spree
   class HotelsController < Spree::StoreController
-    before_action : set_hotel, only[show] 
+    before_action :set_hotel, only: [:show] 
 
     def index      
       @q = {}
@@ -13,7 +13,7 @@ module Spree
     
     private
       def set_hotel
-        @hotel = Spree::Hotel.find(params[:id])
+        #@hotel = Spree::Hotel.find(params[:id])
       end
 
   end
