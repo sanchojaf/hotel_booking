@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324175766) do
+ActiveRecord::Schema.define(version: 20140503133234) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "firstname"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 20140324175766) do
   add_index "spree_assets", ["viewable_id"], name: "index_assets_on_viewable_id"
   add_index "spree_assets", ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
 
+  create_table "spree_bed_types", force: true do |t|
+    t.string   "type_id"
+    t.string   "description"
+    t.integer  "room_rate_detail_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_bed_types", ["room_rate_detail_id"], name: "index_spree_bed_types_on_room_rate_detail_id"
+
   create_table "spree_calculators", force: true do |t|
     t.string   "type"
     t.integer  "calculable_id"
@@ -79,6 +89,22 @@ ActiveRecord::Schema.define(version: 20140324175766) do
 
   add_index "spree_calculators", ["calculable_id", "calculable_type"], name: "index_spree_calculators_on_calculable_id_and_calculable_type"
   add_index "spree_calculators", ["id", "type"], name: "index_spree_calculators_on_id_and_type"
+
+  create_table "spree_chargeable_rate_infos", force: true do |t|
+    t.integer  "rate_info_id"
+    t.float    "total"
+    t.float    "surchargeTotal"
+    t.float    "nightlyRateTotal"
+    t.float    "maxNightlyRate"
+    t.string   "currencyCode"
+    t.float    "commissionableUsdTotal"
+    t.float    "averageRate"
+    t.float    "averageBaseRate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_chargeable_rate_infos", ["rate_info_id"], name: "index_spree_chargeable_rate_infos_on_rate_info_id"
 
   create_table "spree_configurations", force: true do |t|
     t.string   "name"
@@ -127,6 +153,36 @@ ActiveRecord::Schema.define(version: 20140324175766) do
     t.string   "environment", default: "development"
     t.string   "server",      default: "test"
     t.boolean  "test_mode",   default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_hotel_summaries", force: true do |t|
+    t.string   "name"
+    t.integer  "hotel_id"
+    t.string   "address1"
+    t.string   "city"
+    t.string   "state_province_code"
+    t.string   "country_code"
+    t.string   "postal_code"
+    t.string   "airport_code"
+    t.string   "supplier_type"
+    t.string   "property_category"
+    t.float    "hotel_raiting"
+    t.integer  "confidence_rating"
+    t.integer  "amenity_mask"
+    t.text     "short_description"
+    t.string   "location_description"
+    t.string   "low_rate"
+    t.string   "high_rate"
+    t.string   "rate_currency_code"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "proximity_distance"
+    t.string   "proximity_unit"
+    t.boolean  "hotel_in_destination"
+    t.string   "thumb_nail_url"
+    t.string   "deep_link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -208,6 +264,17 @@ ActiveRecord::Schema.define(version: 20140324175766) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spree_nightly_rates_per_rooms", force: true do |t|
+    t.integer  "chargeable_rate_info_id"
+    t.boolean  "promo"
+    t.float    "rate"
+    t.float    "baseRate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_nightly_rates_per_rooms", ["chargeable_rate_info_id"], name: "index_spree_nightly_rates_per_rooms_on_chargeable_rate_info_id"
 
   create_table "spree_option_types", force: true do |t|
     t.string   "name",         limit: 100
@@ -487,6 +554,22 @@ ActiveRecord::Schema.define(version: 20140324175766) do
     t.datetime "updated_at"
   end
 
+  create_table "spree_rate_infos", force: true do |t|
+    t.integer  "room_rate_detail_id"
+    t.string   "promoId"
+    t.string   "promoDescription"
+    t.string   "promoDetailText"
+    t.integer  "currentAllotment"
+    t.string   "cancellationPolicy"
+    t.string   "rateType"
+    t.boolean  "nonRefundable"
+    t.string   "promoType"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_rate_infos", ["room_rate_detail_id"], name: "index_spree_rate_infos_on_room_rate_detail_id"
+
   create_table "spree_return_authorizations", force: true do |t|
     t.string   "number"
     t.string   "state"
@@ -509,6 +592,29 @@ ActiveRecord::Schema.define(version: 20140324175766) do
 
   add_index "spree_roles_users", ["role_id"], name: "index_spree_roles_users_on_role_id"
   add_index "spree_roles_users", ["user_id"], name: "index_spree_roles_users_on_user_id"
+
+  create_table "spree_room_rate_details", force: true do |t|
+    t.integer  "hotel_summary_id"
+    t.string   "room_type_code"
+    t.string   "rate_code"
+    t.integer  "max_room_occupancy"
+    t.integer  "quoted_room_occupancy"
+    t.integer  "min_guest_age"
+    t.string   "room_description"
+    t.string   "promo_id"
+    t.string   "promo_description"
+    t.string   "promo_detailText"
+    t.integer  "current_allotment"
+    t.boolean  "property_available"
+    t.boolean  "property_restricted"
+    t.string   "expedia_propertyId"
+    t.string   "rate_key"
+    t.boolean  "non_refundable"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_room_rate_details", ["hotel_summary_id"], name: "index_spree_room_rate_details_on_hotel_summary_id"
 
   create_table "spree_shipments", force: true do |t|
     t.string   "tracking"
@@ -575,6 +681,15 @@ ActiveRecord::Schema.define(version: 20140324175766) do
   end
 
   add_index "spree_shipping_rates", ["shipment_id", "shipping_method_id"], name: "spree_shipping_rates_join_index", unique: true
+
+  create_table "spree_smoking_preferences", force: true do |t|
+    t.string   "value"
+    t.integer  "room_rate_detail_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_smoking_preferences", ["room_rate_detail_id"], name: "index_spree_smoking_preferences_on_room_rate_detail_id"
 
   create_table "spree_state_changes", force: true do |t|
     t.string   "name"
@@ -679,6 +794,16 @@ ActiveRecord::Schema.define(version: 20140324175766) do
     t.string   "logo_file_name"
     t.string   "default_currency"
   end
+
+  create_table "spree_surcharges", force: true do |t|
+    t.integer  "chargeable_rate_info_id"
+    t.float    "amount"
+    t.string   "surcharge_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_surcharges", ["chargeable_rate_info_id"], name: "index_spree_surcharges_on_chargeable_rate_info_id"
 
   create_table "spree_tax_categories", force: true do |t|
     t.string   "name"

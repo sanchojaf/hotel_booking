@@ -1,5 +1,41 @@
 BookStore::Application.routes.draw do
 
+  namespace :spree do
+    resources :surcharges
+  end
+
+  namespace :spree do
+    resources :nightly_rates_per_rooms
+  end
+
+  namespace :spree do
+    resources :chargeable_rate_infos
+  end
+
+  namespace :spree do
+    resources :rate_infos
+  end
+
+  namespace :spree do
+    resources :smoking_preferences
+  end
+
+  namespace :spree do
+    resources :bed_types
+  end
+
+  namespace :spree do
+    resources :room_rate_details
+  end
+
+  namespace :spree do
+    resources :hotel_summaries
+  end
+
+  namespace :spree do
+    resources :hotel_sumaries
+  end
+
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -10,6 +46,30 @@ BookStore::Application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   Spree::Core::Engine.routes.draw do
+  namespace :spree do
+    resources :surcharges
+  end
+
+  namespace :spree do
+    resources :nightly_rates_per_rooms
+  end
+
+  namespace :spree do
+    resources :chargeable_rate_infos
+  end
+
+  namespace :spree do
+    resources :rate_infos
+  end
+
+  namespace :spree do
+    resources :smoking_preferences
+  end
+
+  namespace :spree do
+    resources :hotel_summaries
+  end
+
     resources :hotels, only: [:index]
   end
 

@@ -1,0 +1,2 @@
+module Spree::RateInfosHelper
+end
