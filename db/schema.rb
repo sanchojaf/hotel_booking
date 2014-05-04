@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503133234) do
+ActiveRecord::Schema.define(version: 20140504220530) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "firstname"
@@ -344,6 +344,7 @@ ActiveRecord::Schema.define(version: 20140503133234) do
 
   add_index "spree_orders", ["completed_at"], name: "index_spree_orders_on_completed_at"
   add_index "spree_orders", ["number"], name: "index_spree_orders_on_number"
+  add_index "spree_orders", ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id"
   add_index "spree_orders", ["user_id"], name: "index_spree_orders_on_user_id"
 
   create_table "spree_orders_promotions", id: false, force: true do |t|
